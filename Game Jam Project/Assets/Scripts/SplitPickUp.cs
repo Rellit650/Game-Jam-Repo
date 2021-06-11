@@ -13,11 +13,11 @@ public class SplitPickUp : MonoBehaviour
     {
         if (other.CompareTag("Player")) 
         {
-            other.GetComponent<PlayerMovmentOld>().SetPickUp(this);
+            other.GetComponent<PlayerMovement>().SetPickUp(this);
         }
     }
 
-    public void pickUp() 
+    public void PickUp() 
     {
         splitRef.splitsLeft++;
         Destroy(gameObject);

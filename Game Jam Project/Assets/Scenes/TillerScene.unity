@@ -478,6 +478,7 @@ GameObject:
   - component: {fileID: 1934497280}
   - component: {fileID: 1934497279}
   - component: {fileID: 1934497278}
+  - component: {fileID: 1934497283}
   m_Layer: 0
   m_Name: SolidForm
   m_TagString: Player
@@ -506,7 +507,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1934497276}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09d0469736d570a4bb01d4f7f7a5417f, type: 3}
   m_Name: 
@@ -593,6 +594,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1934497276}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1934497283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934497276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ffcb4f335d986549963fef6efef1c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 7
+  slide: 1
+  slideTime: 1
 --- !u!1 &2036678298
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,6 +623,7 @@ GameObject:
   - component: {fileID: 2036678301}
   - component: {fileID: 2036678300}
   - component: {fileID: 2036678304}
+  - component: {fileID: 2036678305}
   m_Layer: 0
   m_Name: GasForm
   m_TagString: Player
@@ -715,9 +732,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036678298}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09d0469736d570a4bb01d4f7f7a5417f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 13
+  slide: 0
+  slideTime: 0
+--- !u!114 &2036678305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036678298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ffcb4f335d986549963fef6efef1c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 13
@@ -737,6 +769,7 @@ GameObject:
   - component: {fileID: 2104696374}
   - component: {fileID: 2104696373}
   - component: {fileID: 2104696377}
+  - component: {fileID: 2104696378}
   m_Layer: 0
   m_Name: LiquidForm
   m_TagString: Player
@@ -844,9 +877,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2104696371}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09d0469736d570a4bb01d4f7f7a5417f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  slide: 0
+  slideTime: 0
+--- !u!114 &2104696378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104696371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ffcb4f335d986549963fef6efef1c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10

@@ -90,7 +90,7 @@ public class PlayerMovmentOld : MonoBehaviour
         {
             if (pickUpRef != null) 
             {
-                pickUpRef.pickUp();
+                pickUpRef.PickUp();
             }         
         }
 
