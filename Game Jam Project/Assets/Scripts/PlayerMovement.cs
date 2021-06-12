@@ -25,15 +25,22 @@ public class PlayerMovement : MonoBehaviour
     SplitPickUp pickUpRef;
     float storedY;
     private CinemachineFreeLook cmCamera;
-    
-    public AudioSource source,
-                       newSource;
+
+    private AudioSource iceSource,
+                        waterSource,
+                        gasSource,
+                        oldSource,
+                        newSource;
     public float newVolume;
     public AudioClip clip;
     public AudioScript handler;
     private void OnEnable()
     {
         system.Enable();
+        cmCamera = FindObjectOfType<CinemachineFreeLook>();
+        Transform obj = gameObject.transform;
+        cmCamera.Follow = obj;
+        cmCamera.LookAt = obj;
     }
 
     private void OnDisable()
@@ -58,10 +65,10 @@ public class PlayerMovement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         stateRef = gameObject.transform.parent.GetComponent<PlayerStateController>();
         splitControllerRef = FindObjectOfType<PlayerSplitController>();
-        cmCamera = FindObjectOfType<CinemachineFreeLook>();
-        Transform obj = gameObject.transform;
-        //cmCamera.Follow = obj;
-        //cmCamera.LookAt = obj;
+        iceSource = GameObject.Find("IceSource").GetComponent<AudioSource>();
+        waterSource = GameObject.Find("WaterSource").GetComponent<AudioSource>();
+        gasSource = GameObject.Find("GasSource").GetComponent<AudioSource>();
+        handler = GameObject.Find("SwapHandler").GetComponent<AudioScript>();
     }
 
     // Update is called once per frame
@@ -127,7 +134,22 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = Vector3.zero;
         slideTimer = slideTime;
-        //handler.SwitchAudioTrackToVariant(source, clip, newVolume, newSource, true, 2.0f);
+        switch (stateRef.state)
+        {
+            case 0:
+                oldSource = iceSource;
+                newSource = waterSource;
+                break;
+            case 1:
+                oldSource = waterSource;
+                newSource = gasSource;
+                break; 
+            case 2:
+                oldSource = gasSource;
+                newSource = iceSource;
+                break;
+        }
+        handler.SwitchAudioTrackToVariant(oldSource, clip, newVolume, newSource, true, 2.0f);
         stateRef.ChangeToNextState();
     }
 

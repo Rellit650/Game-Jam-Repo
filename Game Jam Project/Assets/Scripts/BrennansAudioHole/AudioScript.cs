@@ -36,6 +36,12 @@ public class AudioScript : MonoBehaviour
         {
             // If the tracks should crossfade
             case true:
+                // Preventing some jank from using the same source
+                if (otherSource == source)
+                {
+                    Debug.LogWarning("Did you mean to use the same source in both cases?\nNot using a crossfade");
+                    return;
+                }
                 // If the other source doesn't exist, then we need a new one
                 if (otherSource == null)
                 {
@@ -43,6 +49,7 @@ public class AudioScript : MonoBehaviour
                     Transform sTransform = source.transform;
                     otherSource = Instantiate(source, sTransform.position, sTransform.rotation);
                 }
+
                 // Lining up the prior track with the current
                 otherSource.Stop();
                 otherSource.clip = clip;
