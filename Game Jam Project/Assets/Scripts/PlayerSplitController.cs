@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerSplitController : MonoBehaviour
 {
@@ -65,7 +66,7 @@ public class PlayerSplitController : MonoBehaviour
         {
             currentSplitIndex++;
         }
-        Transform objectToView;
+        Transform objectToView = gameObject.transform;
         for (int i = 0; i < SplitHolder[currentSplitIndex].transform.childCount; i++) 
         {
             Transform child = SplitHolder[currentSplitIndex].transform.GetChild(i);
@@ -78,9 +79,9 @@ public class PlayerSplitController : MonoBehaviour
                 objectToView = child;
             }
         }
-        //cmCamera = FindObjectOfType<CinemachineFreeLook>();
-        //cmCamera.Follow = objectToView;
-        //cmCamera.LookAt = objectToView;
+        CinemachineFreeLook cmCamera = FindObjectOfType<CinemachineFreeLook>();
+        cmCamera.Follow = objectToView;
+        cmCamera.LookAt = objectToView;
     }
 
     public void PickUpSplit(GameObject split) 

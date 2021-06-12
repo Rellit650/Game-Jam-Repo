@@ -37,10 +37,10 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         system.Enable();
-        cmCamera = FindObjectOfType<CinemachineFreeLook>();
-        Transform obj = gameObject.transform;
-        cmCamera.Follow = obj;
-        cmCamera.LookAt = obj;
+        //cmCamera = FindObjectOfType<CinemachineFreeLook>();
+        //Transform obj = gameObject.transform;
+        //cmCamera.Follow = obj;
+        //cmCamera.LookAt = obj;
     }
 
     private void OnDisable()
