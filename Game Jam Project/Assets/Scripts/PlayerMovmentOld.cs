@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovmentOld : MonoBehaviour
 {
+    /*
     private PlayerStateController stateRef;
     private PlayerSplitController splitControllerRef;
     private Rigidbody rb;
@@ -110,4 +111,5 @@ public class PlayerMovmentOld : MonoBehaviour
     {
         pickUpRef = spuRef;
     }
+    */
 }
