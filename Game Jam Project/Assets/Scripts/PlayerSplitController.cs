@@ -14,12 +14,16 @@ public class PlayerSplitController : MonoBehaviour
     int currentSplitIndex = 0;
 
     PlayerStateController stateRef;
+    CameraTransitionScript CTS;
+    CinemachineFreeLook cmCamera;
+
     private void Start()
     {
         SplitHolder = new List<GameObject>();
         stateRef = FindObjectOfType<PlayerStateController>();
+        CTS = FindObjectOfType<CameraTransitionScript>();
         SplitHolder.Add(gameObject);
-        //playerRef = FindObjectOfType<PlayerMovement>().gameObject;
+        cmCamera = FindObjectOfType<CinemachineFreeLook>();
     }
     public void SplitPlayer(GameObject player) 
     {
@@ -83,9 +87,10 @@ public class PlayerSplitController : MonoBehaviour
                 objectToView = child;
             }
         }
-        CinemachineFreeLook cmCamera = FindObjectOfType<CinemachineFreeLook>();
-        cmCamera.Follow = objectToView;
-        cmCamera.LookAt = objectToView;
+        CTS.enabled = true;
+        CTS.SetTarget(objectToView);
+        cmCamera.Follow = CTS.transform;
+        cmCamera.LookAt = CTS.transform;
     }
 
     public void PickUpSplit(GameObject split) 
