@@ -58,10 +58,6 @@ public class PlayerMovement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         stateRef = gameObject.transform.parent.GetComponent<PlayerStateController>();
         splitControllerRef = FindObjectOfType<PlayerSplitController>();
-        cmCamera = FindObjectOfType<CinemachineFreeLook>();
-        Transform obj = gameObject.transform;
-        //cmCamera.Follow = obj;
-        //cmCamera.LookAt = obj;
     }
 
     // Update is called once per frame
@@ -126,8 +122,9 @@ public class PlayerMovement : MonoBehaviour
     private void SwapState()
     {
         rb.velocity = Vector3.zero;
+        appliedVelocity = Vector3.zero;
         slideTimer = slideTime;
-        //handler.SwitchAudioTrackToVariant(source, clip, newVolume, newSource, true, 2.0f);
+        handler.SwitchAudioTrackToVariant(source, clip, newVolume, newSource, true, 2.0f);
         stateRef.ChangeToNextState();
     }
 
@@ -139,28 +136,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void SwitchPlayerControl() 
+    public void SwitchPlayerControl() 
     {
         splitControllerRef.CycleControl();
-
-        /*
-        if(pickUpRef != null) 
-        {
-            PlayerMovement[] playerMovementArray = pickUpRef.transform.parent.parent.GetComponentsInChildren<PlayerMovement>();
-            foreach (PlayerMovement pm in playerMovementArray)
-            {
-                pm.enabled = true;
-            }
-            PlayerMovement[] playerMovementArray2 = transform.parent.GetComponentsInChildren<PlayerMovement>();
-            foreach (PlayerMovement pm in playerMovementArray2)
-            {
-                if (pm != this)
-                {
-                    pm.enabled = false;
-                }
-            }
-            this.enabled = false;
-        }    
-        */
     }
 }
