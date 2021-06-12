@@ -27,7 +27,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Switch"",
+                    ""name"": ""SwitchState"",
                     ""type"": ""Button"",
                     ""id"": ""968635f3-fe0c-4005-b639-eea45d82912a"",
                     ""expectedControlType"": ""Button"",
@@ -46,6 +46,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""PickUp"",
                     ""type"": ""Button"",
                     ""id"": ""cda54695-d64d-418c-a47c-67c0ecab897c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SwitchPlayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""f42a7308-31a5-4436-a29d-a41db9ef77f9"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -158,14 +166,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Switch"",
+                    ""action"": ""SwitchState"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""0d98247c-222f-4fd9-a1c3-cde695ac360e"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -176,11 +184,22 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e498930b-e1dc-4d3f-9cd2-94a3e1b29f97"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""PickUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ab6fb59-3fa3-42cd-9308-e3ccc331d467"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SwitchPlayer"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -253,9 +272,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         // PlayerActions
         m_PlayerActions = asset.FindActionMap("PlayerActions", throwIfNotFound: true);
         m_PlayerActions_Move = m_PlayerActions.FindAction("Move", throwIfNotFound: true);
-        m_PlayerActions_Switch = m_PlayerActions.FindAction("Switch", throwIfNotFound: true);
+        m_PlayerActions_SwitchState = m_PlayerActions.FindAction("SwitchState", throwIfNotFound: true);
         m_PlayerActions_Split = m_PlayerActions.FindAction("Split", throwIfNotFound: true);
         m_PlayerActions_PickUp = m_PlayerActions.FindAction("PickUp", throwIfNotFound: true);
+        m_PlayerActions_SwitchPlayer = m_PlayerActions.FindAction("SwitchPlayer", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -306,17 +326,19 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_PlayerActions;
     private IPlayerActionsActions m_PlayerActionsActionsCallbackInterface;
     private readonly InputAction m_PlayerActions_Move;
-    private readonly InputAction m_PlayerActions_Switch;
+    private readonly InputAction m_PlayerActions_SwitchState;
     private readonly InputAction m_PlayerActions_Split;
     private readonly InputAction m_PlayerActions_PickUp;
+    private readonly InputAction m_PlayerActions_SwitchPlayer;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_PlayerActions_Move;
-        public InputAction @Switch => m_Wrapper.m_PlayerActions_Switch;
+        public InputAction @SwitchState => m_Wrapper.m_PlayerActions_SwitchState;
         public InputAction @Split => m_Wrapper.m_PlayerActions_Split;
         public InputAction @PickUp => m_Wrapper.m_PlayerActions_PickUp;
+        public InputAction @SwitchPlayer => m_Wrapper.m_PlayerActions_SwitchPlayer;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -329,15 +351,18 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnMove;
-                @Switch.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSwitch;
-                @Switch.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSwitch;
-                @Switch.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSwitch;
+                @SwitchState.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSwitchState;
+                @SwitchState.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSwitchState;
+                @SwitchState.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSwitchState;
                 @Split.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSplit;
                 @Split.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSplit;
                 @Split.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSplit;
                 @PickUp.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnPickUp;
                 @PickUp.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnPickUp;
                 @PickUp.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnPickUp;
+                @SwitchPlayer.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSwitchPlayer;
+                @SwitchPlayer.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSwitchPlayer;
+                @SwitchPlayer.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSwitchPlayer;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -345,15 +370,18 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Switch.started += instance.OnSwitch;
-                @Switch.performed += instance.OnSwitch;
-                @Switch.canceled += instance.OnSwitch;
+                @SwitchState.started += instance.OnSwitchState;
+                @SwitchState.performed += instance.OnSwitchState;
+                @SwitchState.canceled += instance.OnSwitchState;
                 @Split.started += instance.OnSplit;
                 @Split.performed += instance.OnSplit;
                 @Split.canceled += instance.OnSplit;
                 @PickUp.started += instance.OnPickUp;
                 @PickUp.performed += instance.OnPickUp;
                 @PickUp.canceled += instance.OnPickUp;
+                @SwitchPlayer.started += instance.OnSwitchPlayer;
+                @SwitchPlayer.performed += instance.OnSwitchPlayer;
+                @SwitchPlayer.canceled += instance.OnSwitchPlayer;
             }
         }
     }
@@ -406,8 +434,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     public interface IPlayerActionsActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnSwitch(InputAction.CallbackContext context);
+        void OnSwitchState(InputAction.CallbackContext context);
         void OnSplit(InputAction.CallbackContext context);
         void OnPickUp(InputAction.CallbackContext context);
+        void OnSwitchPlayer(InputAction.CallbackContext context);
     }
 }

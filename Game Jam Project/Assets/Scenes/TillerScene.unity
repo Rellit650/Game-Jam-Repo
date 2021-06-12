@@ -1191,24 +1191,12 @@ PrefabInstance:
       value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 5925362883314097721, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
-      propertyPath: clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 65ad0e508880d9c4984401921215ff4e, type: 3}
-    - target: {fileID: 5925362883314097721, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
-      propertyPath: source
-      value: 
-      objectReference: {fileID: 1116381888}
-    - target: {fileID: 5925362883314097721, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
-      propertyPath: handler
-      value: 
-      objectReference: {fileID: 1247554884}
-    - target: {fileID: 5925362883314097721, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
-      propertyPath: newSource
-      value: 
-      objectReference: {fileID: 1653025018}
-    - target: {fileID: 5925362883314097721, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
-      propertyPath: newVolume
-      value: 0.5
+      propertyPath: playerControl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925362883479451290, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5925362883479451291, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
       propertyPath: clip
@@ -1227,16 +1215,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5925362883479451291, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
-      propertyPath: newSource
-      value: 
-      objectReference: {fileID: 1116381888}
-    - target: {fileID: 5925362883479451291, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
-      propertyPath: newVolume
-      value: 0.5
+      propertyPath: playerControl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925362883479451296, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925362883479451300, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5925362883479451302, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
       propertyPath: m_CollisionDetection
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925362883479451303, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5925362883545634304, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
       propertyPath: clip
@@ -1255,12 +1251,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5925362883545634304, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
-      propertyPath: newSource
-      value: 
-      objectReference: {fileID: 787994606}
-    - target: {fileID: 5925362883545634304, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
-      propertyPath: newVolume
-      value: 0.5
+      propertyPath: playerControl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925362883545634313, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925362883545634316, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925362883545634317, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5925362883545634319, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
       propertyPath: m_CollisionDetection

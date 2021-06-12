@@ -25,9 +25,17 @@ public class SplitPickUp : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerMovement>().SetPickUp(null);
+        }
+    }
     public void PickUp() 
     {
         splitRef.splitsLeft++;
+        splitRef.PickUpSplit(gameObject.transform.parent.parent.gameObject);
         Destroy(gameObject.transform.parent.parent.gameObject);
     }
 }
