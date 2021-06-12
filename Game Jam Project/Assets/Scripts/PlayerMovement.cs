@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -21,13 +17,13 @@ public class PlayerMovement : MonoBehaviour
     private float slideTimer;
 
     private bool stopMoving,
-                 firstFrameOfMovement = false;
+                 firstFrameOfMovement;
 
     private Vector3 cameraDir;
     [SerializeField]
     private float slideTime;
-    SplitPickUp pickUpRef;
-    float storedY;
+    private SplitPickUp pickUpRef;
+    private float storedY;
     private CinemachineFreeLook cmCamera;
 
     private AudioSource iceSource,
@@ -64,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
         stateRef = gameObject.transform.parent.GetComponent<PlayerStateController>();
@@ -76,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         MovePlayer(movement);
         if (stopMoving)
@@ -88,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         storedY = rb.velocity.y;
     }
 
-    void OnStartMovePress(Vector2 ctx)
+    private void OnStartMovePress(Vector2 ctx)
     {
         movement = ctx; 
         firstFrameOfMovement = true;
@@ -99,13 +95,13 @@ public class PlayerMovement : MonoBehaviour
         Vector3 newVel = new Vector3(appliedVelocity.x, storedY, appliedVelocity.z);
         rb.velocity = newVel;
     }
-    void SetStopBool() 
+    private void SetStopBool() 
     {
         stopMoving = true;
         movement = Vector2.zero;
     }
 
-    void HandleStopMovement() 
+    private void HandleStopMovement() 
     {
         if (slide)
         {
@@ -121,38 +117,40 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer(Vector2 movVec)
     {
-        if (movement.sqrMagnitude > 0f && rb.velocity.y > -1.0f) 
+        if (!(movement.sqrMagnitude > 0f) || !(rb.velocity.y > -1.0f))
         {
-            stopMoving = false;
+            return;
+        }
 
-            if (firstFrameOfMovement)
-            {
-                Vector3 dumi = new Vector3(movVec.x, 0f, movVec.y);
+        stopMoving = false;
 
-                cameraDir = Camera.main.transform.TransformDirection(dumi);
-                firstFrameOfMovement = false;
-            }
+        if (firstFrameOfMovement)
+        {
+            Vector3 dumi = new Vector3(movVec.x, 0f, movVec.y);
 
-            //We dont want to deal with y movement yet lets just handle our horizontal and vertical for now
-            cameraDir.y = 0f;
+            cameraDir = Camera.main.transform.TransformDirection(dumi);
+            firstFrameOfMovement = false;
+        }
 
-            //find the angle to rotate our players rotation based on our new direction
-            float rotAngle = Mathf.Atan2(cameraDir.x, cameraDir.z) * Mathf.Rad2Deg;
+        //We dont want to deal with y movement yet lets just handle our horizontal and vertical for now
+        cameraDir.y = 0f;
 
-            //rotate our player based on this angle
-            gameObject.transform.rotation = Quaternion.Euler(0f, rotAngle, 0f);
+        //find the angle to rotate our players rotation based on our new direction
+        float rotAngle = Mathf.Atan2(cameraDir.x, cameraDir.z) * Mathf.Rad2Deg;
 
-            Debug.Log(cameraDir);
+        //rotate our player based on this angle
+        gameObject.transform.rotation = Quaternion.Euler(0f, rotAngle, 0f);
 
-            appliedVelocity.z = cameraDir.z;
-            appliedVelocity.x = cameraDir.x;
-            slideTimer = 0f;
-            initialLerpVelocity = appliedVelocity;
-            if (!slide)
-            {
-                appliedVelocity.Normalize();
-            }
-        }     
+        Debug.Log(cameraDir);
+
+        appliedVelocity.z = cameraDir.z;
+        appliedVelocity.x = cameraDir.x;
+        slideTimer = 0f;
+        initialLerpVelocity = appliedVelocity;
+        if (!slide)
+        {
+            appliedVelocity.Normalize();
+        }
     }
     
     public void SetPickUp(SplitPickUp spuRef) 
@@ -192,8 +190,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void SwitchPlayerControl() 
+    public void SwitchPlayerControl()
     {
+        oldSource = stateRef.state switch
+                    {
+                        0 => iceSource,
+                        1 => waterSource,
+                        2 => gasSource,
+                        _ => oldSource
+                    };
         splitControllerRef.CycleControl();
     }
 }
