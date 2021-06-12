@@ -114,8 +114,24 @@ public class PlayerMovement : MonoBehaviour
         if (movement.sqrMagnitude > 0f && rb.velocity.y > -1.0f) 
         {
             stopMoving = false;
-            appliedVelocity.z = movVec.y;
-            appliedVelocity.x = movVec.x;
+
+            Vector3 dumi = new Vector3(movVec.x, 0f, movVec.y);
+
+            Vector3 cameraDir = Camera.main.transform.TransformDirection(dumi);
+
+            //We dont want to deal with y movement yet lets just handle our horizontal and vertical for now
+            cameraDir.y = 0f;
+
+            //find the angle to rotate our players rotation based on our new direction
+            float rotAngle = Mathf.Atan2(cameraDir.x, cameraDir.z) * Mathf.Rad2Deg;
+
+            //rotate our player based on this angle
+            gameObject.transform.rotation = Quaternion.Euler(0f, rotAngle, 0f);
+
+            Debug.Log(cameraDir);
+
+            appliedVelocity.z = cameraDir.z;
+            appliedVelocity.x = cameraDir.x;
             slideTimer = 0f;
             initialLerpVelocity = appliedVelocity;
             if (!slide)
