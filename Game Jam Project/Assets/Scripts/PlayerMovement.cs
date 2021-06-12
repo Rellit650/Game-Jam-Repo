@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer(Vector2 movVec)
     {
-        if (movement.sqrMagnitude > 0f) 
+        if (movement.sqrMagnitude > 0f && rb.velocity.y > -1.0f) 
         {
             stopMoving = false;
             appliedVelocity.z = movVec.y;
