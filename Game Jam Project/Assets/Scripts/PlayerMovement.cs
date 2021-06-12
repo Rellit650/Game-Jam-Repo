@@ -3,37 +3,47 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // Input system
     private PlayerControls system;
-
     private Vector2 movement;
     
+    // Input system booleans
+    private bool stopMoving,
+                 firstFrameOfMovement;
+    
+    // Necessary split + state changes
     private PlayerStateController stateRef;
     private PlayerSplitController splitControllerRef;
+    
+    // Physics :)
     private Rigidbody rb;
     private Vector3 appliedVelocity;
     private Vector3 initialLerpVelocity;
     public float speed;
     public bool slide;
     private float slideTimer;
+    private float storedY;
 
-    private bool stopMoving,
-                 firstFrameOfMovement;
-
+    // Camera-to-player direction variables
     private Vector3 cameraDir;
+    private CinemachineFreeLook cmCamera;
     [SerializeField]
     private float slideTime;
     private SplitPickUp pickUpRef;
-    private float storedY;
-    private CinemachineFreeLook cmCamera;
 
+    // Music stuff
     private AudioSource iceSource,
                         waterSource,
                         gasSource,
                         oldSource,
                         newSource;
-    public float newVolume;
-    public AudioClip clip;
-    public AudioScript handler;
+    [SerializeField]
+    private float newVolume;
+    [SerializeField]
+    private AudioClip clip;
+    private AudioScript handler;
+    
+    // Input system enable
     private void OnEnable()
     {
         system.Enable();
@@ -43,11 +53,13 @@ public class PlayerMovement : MonoBehaviour
         //cmCamera.LookAt = obj;
     }
 
+    // Input system disable
     private void OnDisable()
     {
         system.Disable();
     }
     
+    // Set up input system listeners
     private void Awake()
     {
         system = new PlayerControls();
@@ -84,23 +96,28 @@ public class PlayerMovement : MonoBehaviour
         storedY = rb.velocity.y;
     }
 
+    // Setting variables for movement directions
     private void OnStartMovePress(Vector2 ctx)
     {
         movement = ctx; 
         firstFrameOfMovement = true;
     }
     
+    // Physics :)
     private void FixedUpdate()
     {
         Vector3 newVel = new Vector3(appliedVelocity.x, storedY, appliedVelocity.z);
         rb.velocity = newVel;
     }
+    
+    // Setting variables for post-movement
     private void SetStopBool() 
     {
         stopMoving = true;
         movement = Vector2.zero;
     }
 
+    // Handling movement stop
     private void HandleStopMovement() 
     {
         if (slide)
@@ -115,6 +132,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // Updating player position
     void MovePlayer(Vector2 movVec)
     {
         if (!(movement.sqrMagnitude > 0f) || !(rb.velocity.y > -1.0f))
@@ -153,11 +171,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
+    // Set which pick up should be obtained
     public void SetPickUp(SplitPickUp spuRef) 
     {
         pickUpRef = spuRef;
     }
 
+    // Swap current state
     private void SwapState()
     {
         rb.velocity = Vector3.zero;
@@ -182,6 +202,7 @@ public class PlayerMovement : MonoBehaviour
         stateRef.ChangeToNextState();
     }
 
+    // Pick up current pick up
     private void PickUp()
     {
         if (pickUpRef != null)
@@ -190,6 +211,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // Switch which split player is controlling
     public void SwitchPlayerControl()
     {
         oldSource = stateRef.state switch
