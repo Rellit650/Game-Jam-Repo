@@ -10,11 +10,14 @@ public class PlayerSplitController : MonoBehaviour
 
     List<GameObject> SplitHolder;
 
+    int currentSplitIndex = 0;
+
     PlayerStateController stateRef;
     private void Start()
     {
         SplitHolder = new List<GameObject>();
         stateRef = FindObjectOfType<PlayerStateController>();
+        SplitHolder.Add(gameObject);
         //playerRef = FindObjectOfType<PlayerMovement>().gameObject;
     }
     public void SplitPlayer(GameObject player) 
@@ -42,5 +45,38 @@ public class PlayerSplitController : MonoBehaviour
             }
             --splitsLeft;
         }        
+    }
+
+    public void CycleControl() 
+    {
+        for (int i = 0; i < SplitHolder[currentSplitIndex].transform.childCount; i++) 
+        {
+            Transform child = SplitHolder[currentSplitIndex].transform.GetChild(i);
+            bool curActive = child.gameObject.activeSelf;
+            child.gameObject.SetActive(true);
+            child.gameObject.GetComponent<PlayerMovement>().enabled = false;
+            child.gameObject.SetActive(curActive);
+        }
+        if (currentSplitIndex >= SplitHolder.Count-1)
+        {
+            currentSplitIndex = 0;
+        }
+        else 
+        {
+            currentSplitIndex++;
+        }     
+        for (int i = 0; i < SplitHolder[currentSplitIndex].transform.childCount; i++) 
+        {
+            Transform child = SplitHolder[currentSplitIndex].transform.GetChild(i);
+            bool curActive = child.gameObject.activeSelf;
+            child.gameObject.SetActive(true);
+            child.gameObject.GetComponent<PlayerMovement>().enabled = true;
+            child.gameObject.SetActive(curActive);
+        }
+    }
+
+    public void PickUpSplit(GameObject split) 
+    {
+        SplitHolder.Remove(split);
     }
 }

@@ -40,9 +40,10 @@ public class PlayerMovement : MonoBehaviour
         system = new PlayerControls();
         system.PlayerActions.Move.performed += ctx => movement = ctx.ReadValue<Vector2>();
         system.PlayerActions.Move.canceled += ctx => SetStopBool();
-        system.PlayerActions.Switch.performed += ctx => SwapState();
+        system.PlayerActions.SwitchState.performed += ctx => SwapState();
         system.PlayerActions.Split.performed += ctx => splitControllerRef.SplitPlayer(gameObject);
         system.PlayerActions.PickUp.performed += ctx => PickUp();
+        system.PlayerActions.SwitchPlayer.performed += ctx => SwitchPlayerControl();
     }
 
     // Start is called before the first frame update
@@ -53,15 +54,15 @@ public class PlayerMovement : MonoBehaviour
         splitControllerRef = FindObjectOfType<PlayerSplitController>();
         cmCamera = FindObjectOfType<CinemachineFreeLook>();
         Transform obj = gameObject.transform;
-        cmCamera.Follow = obj;
-        cmCamera.LookAt = obj;
+        //cmCamera.Follow = obj;
+        //cmCamera.LookAt = obj;
     }
 
     // Update is called once per frame
     void Update()
     {
         MovePlayer(movement);
-        if (stopMoving) 
+        if (stopMoving)
         {
             HandleStopMovement();
         }
@@ -75,7 +76,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 newVel = new Vector3(appliedVelocity.x, storedY, appliedVelocity.z);
         rb.velocity = newVel;
     }
-
     void SetStopBool() 
     {
         stopMoving = true;
@@ -114,7 +114,6 @@ public class PlayerMovement : MonoBehaviour
     
     public void SetPickUp(SplitPickUp spuRef) 
     {
-        Debug.Log("pick up set");
         pickUpRef = spuRef;
     }
 
@@ -131,5 +130,30 @@ public class PlayerMovement : MonoBehaviour
         {
             pickUpRef.PickUp();
         }
+    }
+
+    private void SwitchPlayerControl() 
+    {
+        splitControllerRef.CycleControl();
+
+        /*
+        if(pickUpRef != null) 
+        {
+            PlayerMovement[] playerMovementArray = pickUpRef.transform.parent.parent.GetComponentsInChildren<PlayerMovement>();
+            foreach (PlayerMovement pm in playerMovementArray)
+            {
+                pm.enabled = true;
+            }
+            PlayerMovement[] playerMovementArray2 = transform.parent.GetComponentsInChildren<PlayerMovement>();
+            foreach (PlayerMovement pm in playerMovementArray2)
+            {
+                if (pm != this)
+                {
+                    pm.enabled = false;
+                }
+            }
+            this.enabled = false;
+        }    
+        */
     }
 }
