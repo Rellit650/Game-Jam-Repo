@@ -19,7 +19,11 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public bool slide;
     private float slideTimer;
-    private bool stopMoving;
+
+    private bool stopMoving,
+                 firstFrameOfMovement = false;
+
+    private Vector3 cameraDir;
     [SerializeField]
     private float slideTime;
     SplitPickUp pickUpRef;
@@ -51,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         system = new PlayerControls();
-        system.PlayerActions.Move.performed += ctx => movement = ctx.ReadValue<Vector2>();
+        system.PlayerActions.Move.performed += ctx => OnStartMovePress(ctx.ReadValue<Vector2>());
         system.PlayerActions.Move.canceled += ctx => SetStopBool();
         system.PlayerActions.SwitchState.performed += ctx => SwapState();
         system.PlayerActions.Split.performed += ctx => splitControllerRef.SplitPlayer(gameObject);
@@ -84,6 +88,12 @@ public class PlayerMovement : MonoBehaviour
         storedY = rb.velocity.y;
     }
 
+    void OnStartMovePress(Vector2 ctx)
+    {
+        movement = ctx; 
+        firstFrameOfMovement = true;
+    }
+    
     private void FixedUpdate()
     {
         Vector3 newVel = new Vector3(appliedVelocity.x, storedY, appliedVelocity.z);
@@ -115,9 +125,13 @@ public class PlayerMovement : MonoBehaviour
         {
             stopMoving = false;
 
-            Vector3 dumi = new Vector3(movVec.x, 0f, movVec.y);
+            if (firstFrameOfMovement)
+            {
+                Vector3 dumi = new Vector3(movVec.x, 0f, movVec.y);
 
-            Vector3 cameraDir = Camera.main.transform.TransformDirection(dumi);
+                cameraDir = Camera.main.transform.TransformDirection(dumi);
+                firstFrameOfMovement = false;
+            }
 
             //We dont want to deal with y movement yet lets just handle our horizontal and vertical for now
             cameraDir.y = 0f;
