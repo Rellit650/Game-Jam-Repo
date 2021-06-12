@@ -131,8 +131,8 @@ MonoBehaviour:
   slideTime: 0.5
   source: {fileID: 0}
   newSource: {fileID: 0}
-  newVolume: 0
-  clip: {fileID: 0}
+  newVolume: 0.5
+  clip: {fileID: 8300000, guid: 65ad0e508880d9c4984401921215ff4e, type: 3}
   handler: {fileID: 0}
 --- !u!1 &5925362883479451296
 GameObject:
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 5925362883479451297}
   - component: {fileID: 5925362883479451301}
   - component: {fileID: 5925362883479451300}
-  - component: {fileID: 5925362883479451303}
+  - component: {fileID: 1164065931379133389}
   - component: {fileID: 5925362883479451302}
   - component: {fileID: 5925362883479451291}
   - component: {fileID: 5925362883479451290}
@@ -177,7 +177,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5925362883479451296}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &5925362883479451300
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -220,8 +220,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5925362883479451303
-CapsuleCollider:
+--- !u!135 &1164065931379133389
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -230,9 +230,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5925362883479451302
 Rigidbody:
@@ -267,8 +266,8 @@ MonoBehaviour:
   slideTime: 0
   source: {fileID: 0}
   newSource: {fileID: 0}
-  newVolume: 0
-  clip: {fileID: 0}
+  newVolume: 0.5
+  clip: {fileID: 8300000, guid: 62d1d471ee68f7145ae706467aa5fb8c, type: 3}
   handler: {fileID: 0}
 --- !u!114 &5925362883479451290
 MonoBehaviour:
@@ -413,8 +412,8 @@ MonoBehaviour:
   slideTime: 0
   source: {fileID: 0}
   newSource: {fileID: 0}
-  newVolume: 0
-  clip: {fileID: 0}
+  newVolume: 0.5
+  clip: {fileID: 8300000, guid: 29f26e3ad9671254884825a977d098d3, type: 3}
   handler: {fileID: 0}
 --- !u!1 &5925362884126557997
 GameObject:

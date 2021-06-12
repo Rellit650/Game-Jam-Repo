@@ -133,6 +133,7 @@ public class PlayerMovement : MonoBehaviour
     private void SwapState()
     {
         rb.velocity = Vector3.zero;
+        appliedVelocity = Vector3.zero;
         slideTimer = slideTime;
         switch (stateRef.state)
         {
@@ -161,28 +162,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void SwitchPlayerControl() 
+    public void SwitchPlayerControl() 
     {
         splitControllerRef.CycleControl();
-
-        /*
-        if(pickUpRef != null) 
-        {
-            PlayerMovement[] playerMovementArray = pickUpRef.transform.parent.parent.GetComponentsInChildren<PlayerMovement>();
-            foreach (PlayerMovement pm in playerMovementArray)
-            {
-                pm.enabled = true;
-            }
-            PlayerMovement[] playerMovementArray2 = transform.parent.GetComponentsInChildren<PlayerMovement>();
-            foreach (PlayerMovement pm in playerMovementArray2)
-            {
-                if (pm != this)
-                {
-                    pm.enabled = false;
-                }
-            }
-            this.enabled = false;
-        }    
-        */
     }
 }

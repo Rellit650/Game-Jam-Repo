@@ -64,7 +64,8 @@ public class PlayerSplitController : MonoBehaviour
         else 
         {
             currentSplitIndex++;
-        }     
+        }
+        Transform objectToView;
         for (int i = 0; i < SplitHolder[currentSplitIndex].transform.childCount; i++) 
         {
             Transform child = SplitHolder[currentSplitIndex].transform.GetChild(i);
@@ -72,11 +73,22 @@ public class PlayerSplitController : MonoBehaviour
             child.gameObject.SetActive(true);
             child.gameObject.GetComponent<PlayerMovement>().enabled = true;
             child.gameObject.SetActive(curActive);
+            if (curActive) 
+            {
+                objectToView = child;
+            }
         }
+        //cmCamera = FindObjectOfType<CinemachineFreeLook>();
+        //cmCamera.Follow = objectToView;
+        //cmCamera.LookAt = objectToView;
     }
 
     public void PickUpSplit(GameObject split) 
     {
         SplitHolder.Remove(split);
+        if (currentSplitIndex >= SplitHolder.Count - 1) 
+        {
+            currentSplitIndex = 0;
+        }
     }
 }
