@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     float slideTime;
     SplitPickUp pickUpRef;
 
-    private CinemachineFreeLook camera;
+    private CinemachineFreeLook cmCamera;
     private void OnEnable()
     {
         system.Enable();
@@ -50,10 +50,10 @@ public class PlayerMovement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         stateRef = FindObjectOfType<PlayerStateController>();
         splitControllerRef = FindObjectOfType<PlayerSplitController>();
-        camera = FindObjectOfType<CinemachineFreeLook>();
+        cmCamera = FindObjectOfType<CinemachineFreeLook>();
         Transform obj = gameObject.transform;
-        camera.Follow = obj;
-        camera.LookAt = obj;
+        cmCamera.Follow = obj;
+        cmCamera.LookAt = obj;
     }
 
     // Update is called once per frame
