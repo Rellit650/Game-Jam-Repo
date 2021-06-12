@@ -171,8 +171,6 @@ public class PlayerMovement : MonoBehaviour
         //rotate our player based on this angle
         gameObject.transform.rotation = Quaternion.Euler(0f, rotAngle, 0f);
 
-        Debug.Log(cameraDir);
-
         appliedVelocity.z = cameraDir.z;
         appliedVelocity.x = cameraDir.x;
         slideTimer = 0f;
