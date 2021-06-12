@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 0f4ca62ca33e075449288a884f803a45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,6 +129,11 @@ MonoBehaviour:
   speed: 7
   slide: 1
   slideTime: 0.5
+  source: {fileID: 0}
+  newSource: {fileID: 0}
+  newVolume: 0
+  clip: {fileID: 0}
+  handler: {fileID: 0}
 --- !u!1 &5925362883479451296
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +198,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 9c6cb0ac7b4ea77419ec3fd8bb53f37c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -260,6 +265,11 @@ MonoBehaviour:
   speed: 0
   slide: 0
   slideTime: 0
+  source: {fileID: 0}
+  newSource: {fileID: 0}
+  newVolume: 0
+  clip: {fileID: 0}
+  handler: {fileID: 0}
 --- !u!114 &5925362883479451290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,7 +345,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: a389384ff44e3df468e1f6cb9f87bb50, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -401,6 +411,11 @@ MonoBehaviour:
   speed: 10
   slide: 0
   slideTime: 0
+  source: {fileID: 0}
+  newSource: {fileID: 0}
+  newVolume: 0
+  clip: {fileID: 0}
+  handler: {fileID: 0}
 --- !u!1 &5925362884126557997
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,6 +481,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   splitsLeft: 3
-  splitSolidPrefab: {fileID: 7875573079068448577, guid: 2cd526136e2258945999fb45826f405a, type: 3}
-  splitLiquidPrefab: {fileID: 7578379580643068829, guid: 90090295c2391e14b83ea5df23fe8a28, type: 3}
-  splitGasPrefab: {fileID: 408509140863788875, guid: 88da18de889d8c0459977d2d41877357, type: 3}
+  splitPrefab: {fileID: 0}
