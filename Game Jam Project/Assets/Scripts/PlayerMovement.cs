@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -21,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float slideTime;
     SplitPickUp pickUpRef;
+
+    private CinemachineFreeLook camera;
     private void OnEnable()
     {
         system.Enable();
@@ -47,6 +50,10 @@ public class PlayerMovement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         stateRef = FindObjectOfType<PlayerStateController>();
         splitControllerRef = FindObjectOfType<PlayerSplitController>();
+        camera = FindObjectOfType<CinemachineFreeLook>();
+        Transform obj = gameObject.transform;
+        camera.Follow = obj;
+        camera.LookAt = obj;
     }
 
     // Update is called once per frame
