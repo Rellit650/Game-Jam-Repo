@@ -127,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = Vector3.zero;
         slideTimer = slideTime;
-        handler.SwitchAudioTrackToVariant(source, clip, newVolume, newSource, true, 2.0f);
+        //handler.SwitchAudioTrackToVariant(source, clip, newVolume, newSource, true, 2.0f);
         stateRef.ChangeToNextState();
     }
 
