@@ -14,7 +14,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Switch",
+                    "name": "SwitchState",
                     "type": "Button",
                     "id": "968635f3-fe0c-4005-b639-eea45d82912a",
                     "expectedControlType": "Button",
@@ -33,6 +33,14 @@
                     "name": "PickUp",
                     "type": "Button",
                     "id": "cda54695-d64d-418c-a47c-67c0ecab897c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SwitchPlayer",
+                    "type": "Button",
+                    "id": "f42a7308-31a5-4436-a29d-a41db9ef77f9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -145,14 +153,14 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Switch",
+                    "action": "SwitchState",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "0d98247c-222f-4fd9-a1c3-cde695ac360e",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -163,11 +171,22 @@
                 {
                     "name": "",
                     "id": "e498930b-e1dc-4d3f-9cd2-94a3e1b29f97",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "PickUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9ab6fb59-3fa3-42cd-9308-e3ccc331d467",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SwitchPlayer",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
