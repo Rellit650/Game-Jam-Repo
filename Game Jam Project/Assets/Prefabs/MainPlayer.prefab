@@ -701,7 +701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   splitsLeft: 3
-  splitPrefab: {fileID: 0}
+  splitPrefab: {fileID: 7875573079068448577, guid: 2cd526136e2258945999fb45826f405a, type: 3}
 --- !u!1 &8366283388114217392
 GameObject:
   m_ObjectHideFlags: 0
