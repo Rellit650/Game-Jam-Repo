@@ -1198,6 +1198,7 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 5925362883479451291, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
       propertyPath: clip
       value: 
@@ -1215,6 +1216,13 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5925362883479451291, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
+=======
+    - target: {fileID: 5925362883479451291, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925362883479451291, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
+>>>>>>> Tiller
       propertyPath: playerControl
       value: 1
       objectReference: {fileID: 0}
@@ -1234,6 +1242,7 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 5925362883545634304, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
       propertyPath: clip
       value: 
@@ -1246,6 +1255,8 @@ PrefabInstance:
       propertyPath: handler
       value: 
       objectReference: {fileID: 1247554884}
+=======
+>>>>>>> Tiller
     - target: {fileID: 5925362883545634304, guid: bca26cb376d48d24a990b6ea10fed66f, type: 3}
       propertyPath: m_Enabled
       value: 1
