@@ -23,6 +23,9 @@ public class PlayerStateController : MonoBehaviour
             
             cmCamera.Follow = stateGameObjectArray[1].transform;
             cmCamera.LookAt = stateGameObjectArray[1].transform;
+            cmCamera.GetRig(0).LookAt = stateGameObjectArray[1].transform.Find("TopRigOverrideTarget");
+            cmCamera.GetRig(1).LookAt = stateGameObjectArray[1].transform.Find("MiddleRigOverrideTarget");
+            cmCamera.GetRig(2).LookAt = stateGameObjectArray[1].transform.Find("BottomRigOverrideTarget");
         }
         else if (state == 1) 
         {
@@ -32,6 +35,9 @@ public class PlayerStateController : MonoBehaviour
             
             cmCamera.Follow = stateGameObjectArray[2].transform;
             cmCamera.LookAt = stateGameObjectArray[2].transform;
+            cmCamera.GetRig(0).LookAt = stateGameObjectArray[2].transform.Find("TopRigOverrideTarget");
+            cmCamera.GetRig(1).LookAt = stateGameObjectArray[2].transform.Find("MiddleRigOverrideTarget");
+            cmCamera.GetRig(2).LookAt = stateGameObjectArray[2].transform.Find("BottomRigOverrideTarget");
         }
         else if (state == 2)
         {
@@ -41,8 +47,11 @@ public class PlayerStateController : MonoBehaviour
             
             cmCamera.Follow = stateGameObjectArray[0].transform;
             cmCamera.LookAt = stateGameObjectArray[0].transform;
+            cmCamera.GetRig(0).LookAt = stateGameObjectArray[0].transform.Find("TopRigOverrideTarget");
+            cmCamera.GetRig(1).LookAt = stateGameObjectArray[0].transform.Find("MiddleRigOverrideTarget");
+            cmCamera.GetRig(2).LookAt = stateGameObjectArray[0].transform.Find("BottomRigOverrideTarget");
         }
-        state++;
+        ++state;
         if (state >= 3) 
         {
             state = 0;

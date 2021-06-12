@@ -91,6 +91,9 @@ public class PlayerSplitController : MonoBehaviour
         CTS.SetTarget(objectToView);
         cmCamera.Follow = CTS.transform;
         cmCamera.LookAt = CTS.transform;
+        cmCamera.GetRig(0).LookAt = objectToView.Find("TopRigOverrideTarget");
+        cmCamera.GetRig(1).LookAt = objectToView.Find("MiddleRigOverrideTarget");
+        cmCamera.GetRig(2).LookAt = objectToView.Find("BottomRigOverrideTarget");
         AudioSource newSource;
         AudioClip clip;
         switch (objectToView.parent.GetComponent<PlayerStateController>().state)

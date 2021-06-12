@@ -6,15 +6,15 @@ public class PlayerMovement : MonoBehaviour
     // Input system
     private PlayerControls system;
     private Vector2 movement;
-    
+
     // Input system booleans
     private bool stopMoving,
                  firstFrameOfMovement;
-    
+
     // Necessary split + state changes
     private PlayerStateController stateRef;
     private PlayerSplitController splitControllerRef;
-    
+
     // Physics :)
     private Rigidbody rb;
     private Vector3 appliedVelocity;
@@ -42,16 +42,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private AudioClip clip;
     private AudioScript handler;
-    
+
     // Input system enable
     private bool isSplit = false;
+
+    // Particle System Varaibles
+    [SerializeField]
+    ParticleSystem SolidMovement;
+    [SerializeField]
+    ParticleSystem WaterMovement;
     private void OnEnable()
     {
         system.Enable();
-        //cmCamera = FindObjectOfType<CinemachineFreeLook>();
-        //Transform obj = gameObject.transform;
-        //cmCamera.Follow = obj;
-        //cmCamera.LookAt = obj;
     }
 
     // Input system disable
@@ -126,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
     void SetStopBool() 
     {
         stopMoving = true;
+        StopParticleSystems();
         movement = Vector2.zero;
     }
 
@@ -149,38 +152,52 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!(movement.sqrMagnitude > 0f) || !(rb.velocity.y > -1.0f))
         {
+            appliedVelocity = Vector3.zero;
             return;
         }
 
         stopMoving = false;
-
+        
         if (firstFrameOfMovement)
         {
             Vector3 dumi = new Vector3(movVec.x, 0f, movVec.y);
 
             cameraDir = Camera.main.transform.TransformDirection(dumi);
             firstFrameOfMovement = false;
+            StartParticleSystems();
         }
 
         //We dont want to deal with y movement yet lets just handle our horizontal and vertical for now
         cameraDir.y = 0f;
 
-        //find the angle to rotate our players rotation based on our new direction
-        float rotAngle = Mathf.Atan2(cameraDir.x, cameraDir.z) * Mathf.Rad2Deg;
+        if (stateRef.state == 0) 
+        {
+            //find the angle to rotate our players rotation based on our new direction
+            float rotAngle = Mathf.Atan2(cameraDir.x, cameraDir.z) * Mathf.Rad2Deg;
 
-        //rotate our player based on this angle
-        gameObject.transform.rotation = Quaternion.Euler(0f, rotAngle, 0f);
+            //rotate our player based on this angle
+            gameObject.transform.rotation = Quaternion.Euler(0f, rotAngle, 0f);
+        }     
 
         appliedVelocity.z = cameraDir.z;
         appliedVelocity.x = cameraDir.x;
         slideTimer = 0f;
         initialLerpVelocity = appliedVelocity;
-        if (!slide)
-        {
-            appliedVelocity.Normalize();
-        }
+        appliedVelocity.Normalize();
     }
-    
+
+    void StopParticleSystems() 
+    {
+        WaterMovement.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+        SolidMovement.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+    }
+
+    void StartParticleSystems() 
+    {
+        WaterMovement.Play(true);
+        SolidMovement.Play(true);
+    }
+
     // Set which pick up should be obtained
     public void SetPickUp(SplitPickUp spuRef) 
     {
