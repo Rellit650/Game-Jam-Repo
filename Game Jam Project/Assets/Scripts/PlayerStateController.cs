@@ -33,4 +33,11 @@ public class PlayerStateController : MonoBehaviour
             state = 0;
         }
     }
+
+    public void SetState(int newState) 
+    {
+        stateGameObjectArray[state].SetActive(false);
+        state = newState;
+        stateGameObjectArray[state].SetActive(true);
+    }
 }

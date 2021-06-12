@@ -11,7 +11,15 @@ public class SplitPickUp : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) 
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerMovement>().SetPickUp(this);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
         {
             other.GetComponent<PlayerMovement>().SetPickUp(this);
         }
@@ -20,6 +28,6 @@ public class SplitPickUp : MonoBehaviour
     public void PickUp() 
     {
         splitRef.splitsLeft++;
-        Destroy(gameObject);
+        Destroy(gameObject.transform.parent.parent.gameObject);
     }
 }

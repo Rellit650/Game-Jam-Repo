@@ -18,9 +18,12 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public bool slide;
     private float slideTimer;
+    private bool stopMoving;
     [SerializeField]
-    float slideTime;
+    private float slideTime;
     SplitPickUp pickUpRef;
+
+    float storedY;
     private void OnEnable()
     {
         system.Enable();
@@ -35,9 +38,9 @@ public class PlayerMovement : MonoBehaviour
     {
         system = new PlayerControls();
         system.PlayerActions.Move.performed += ctx => movement = ctx.ReadValue<Vector2>();
-        system.PlayerActions.Move.canceled += ctx => movement = Vector2.zero;
+        system.PlayerActions.Move.canceled += ctx => SetStopBool();
         system.PlayerActions.Switch.performed += ctx => SwapState();
-        system.PlayerActions.Split.performed += ctx => splitControllerRef.SplitPlayer();
+        system.PlayerActions.Split.performed += ctx => splitControllerRef.SplitPlayer(gameObject);
         system.PlayerActions.PickUp.performed += ctx => PickUp();
     }
 
@@ -45,49 +48,75 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        stateRef = FindObjectOfType<PlayerStateController>();
+        stateRef = gameObject.transform.parent.GetComponent<PlayerStateController>();
         splitControllerRef = FindObjectOfType<PlayerSplitController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(movement);
         MovePlayer(movement);
+        if (stopMoving) 
+        {
+            HandleStopMovement();
+        }
+        appliedVelocity.x *= speed;
+        appliedVelocity.z *= speed;
+        storedY = rb.velocity.y;
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = appliedVelocity * speed;
+        Vector3 newVel = new Vector3(appliedVelocity.x, storedY, appliedVelocity.z);
+        rb.velocity = newVel;
+    }
+
+    void SetStopBool() 
+    {
+        stopMoving = true;
+        movement = Vector2.zero;
+    }
+
+    void HandleStopMovement() 
+    {
+        if (slide)
+        {
+            //Slide
+            slideTimer += Time.deltaTime;
+            appliedVelocity = Vector3.Lerp(initialLerpVelocity.normalized, Vector3.zero, slideTimer / slideTime);
+        }
+        else 
+        {
+            appliedVelocity = Vector3.zero;
+        }
     }
 
     void MovePlayer(Vector2 movVec)
     {
-        appliedVelocity.z = movVec.y;
-        appliedVelocity.x = movVec.x;
-        slideTimer = 0f;
-        initialLerpVelocity = appliedVelocity;
-        
-        if (!slide)
+        if (movement.sqrMagnitude > 0f) 
         {
-            //Stop moving
-            appliedVelocity.Normalize();
-        }
-        else 
-        {
-            slideTimer += Time.deltaTime;
-            appliedVelocity = Vector3.Lerp(initialLerpVelocity.normalized, Vector3.zero, slideTimer / slideTime);
-        }
+            stopMoving = false;
+            appliedVelocity.z = movVec.y;
+            appliedVelocity.x = movVec.x;
+            slideTimer = 0f;
+            initialLerpVelocity = appliedVelocity;
+            if (!slide)
+            {
+                appliedVelocity.Normalize();
+            }
+        }     
     }
     
     public void SetPickUp(SplitPickUp spuRef) 
     {
+        Debug.Log("pick up set");
         pickUpRef = spuRef;
     }
 
     private void SwapState()
     {
         rb.velocity = Vector3.zero;
+        slideTimer = slideTime;
         stateRef.ChangeToNextState();
     }
 
