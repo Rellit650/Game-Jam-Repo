@@ -231,6 +231,6 @@ public class PlayerMovement : MonoBehaviour
                         2 => gasSource,
                         _ => oldSource
                     };
-        splitControllerRef.CycleControl();
+        splitControllerRef.CycleControl(oldSource, handler, 0.5f);
     }
 }

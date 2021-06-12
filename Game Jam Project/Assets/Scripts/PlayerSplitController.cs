@@ -52,7 +52,7 @@ public class PlayerSplitController : MonoBehaviour
         }        
     }
 
-    public void CycleControl() 
+    public void CycleControl(AudioSource old, AudioScript handler, float newVolume) 
     {
         for (int i = 0; i < SplitHolder[currentSplitIndex].transform.childCount; i++) 
         {
@@ -91,6 +91,28 @@ public class PlayerSplitController : MonoBehaviour
         CTS.SetTarget(objectToView);
         cmCamera.Follow = CTS.transform;
         cmCamera.LookAt = CTS.transform;
+        AudioSource newSource;
+        AudioClip clip;
+        switch (objectToView.parent.GetComponent<PlayerStateController>().state)
+        {
+            case 0:
+                newSource = GameObject.Find("IceSource").GetComponent<AudioSource>();
+                clip = GameObject.Find("MusicStuff").GetComponent<AudioClipHolder>().clips[0];
+                break;
+            case 1:
+                newSource = GameObject.Find("WaterSource").GetComponent<AudioSource>();
+                clip = GameObject.Find("MusicStuff").GetComponent<AudioClipHolder>().clips[1];
+                break;
+            case 2:
+                newSource = GameObject.Find("GasSource").GetComponent<AudioSource>();
+                clip = GameObject.Find("MusicStuff").GetComponent<AudioClipHolder>().clips[2];
+                break;
+            default:
+                newSource = GameObject.Find("IceSource").GetComponent<AudioSource>();
+                clip = GameObject.Find("MusicStuff").GetComponent<AudioClipHolder>().clips[0];
+                break;
+        }
+        handler.SwitchAudioTrackToVariant(old, clip, newVolume, newSource, true, 2.0f);
     }
 
     public void PickUpSplit(GameObject split) 
