@@ -73,6 +73,10 @@ public class PlayerSplitController : MonoBehaviour
             bool curActive = child.gameObject.activeSelf;
             child.gameObject.SetActive(true);
             child.gameObject.GetComponent<PlayerMovement>().enabled = true;
+            if (child.gameObject.CompareTag("Split"))
+            {
+                child.gameObject.GetComponent<PlayerMovement>().SetSplitBool(true);
+            }
             child.gameObject.SetActive(curActive);
             if (curActive) 
             {

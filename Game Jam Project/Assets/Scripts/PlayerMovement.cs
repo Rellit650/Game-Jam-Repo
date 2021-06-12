@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     private AudioScript handler;
     
     // Input system enable
+    private bool isSplit = false;
     private void OnEnable()
     {
         system.Enable();
@@ -66,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
         system.PlayerActions.Move.performed += ctx => OnStartMovePress(ctx.ReadValue<Vector2>());
         system.PlayerActions.Move.canceled += ctx => SetStopBool();
         system.PlayerActions.SwitchState.performed += ctx => SwapState();
-        system.PlayerActions.Split.performed += ctx => splitControllerRef.SplitPlayer(gameObject);
+        system.PlayerActions.Split.performed += ctx => SplitPlayer();
         system.PlayerActions.PickUp.performed += ctx => PickUp();
         system.PlayerActions.SwitchPlayer.performed += ctx => SwitchPlayerControl();
     }
@@ -109,9 +110,20 @@ public class PlayerMovement : MonoBehaviour
         Vector3 newVel = new Vector3(appliedVelocity.x, storedY, appliedVelocity.z);
         rb.velocity = newVel;
     }
-    
-    // Setting variables for post-movement
-    private void SetStopBool() 
+
+    public void SetSplitBool(bool val) 
+    {
+        isSplit = val;
+    }
+    void SplitPlayer() 
+    {
+        if (!isSplit) 
+        {
+            splitControllerRef.SplitPlayer(gameObject);
+        }
+    }
+
+    void SetStopBool() 
     {
         stopMoving = true;
         movement = Vector2.zero;
