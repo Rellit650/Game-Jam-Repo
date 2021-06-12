@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private float slideTime;
     SplitPickUp pickUpRef;
     float storedY;
-    private CinemachineFreeLook camera;
+    private CinemachineFreeLook cmCamera;
     private void OnEnable()
     {
         system.Enable();
