@@ -8,7 +8,7 @@ public class EndZoneScript : MonoBehaviour
     {
         if (other.CompareTag("Player")) 
         {
-            
+            Debug.Log("You did! Wow!");
         }
     }
 }
