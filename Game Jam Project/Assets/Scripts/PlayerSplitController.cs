@@ -91,6 +91,7 @@ public class PlayerSplitController : MonoBehaviour
         CTS.SetTarget(objectToView);
         cmCamera.Follow = CTS.transform;
         cmCamera.LookAt = CTS.transform;
+        cmCamera.GetRig(0).LookAt = CTS.transform;
     }
 
     public void PickUpSplit(GameObject split) 
