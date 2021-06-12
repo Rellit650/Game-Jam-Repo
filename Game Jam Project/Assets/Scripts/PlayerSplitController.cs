@@ -19,6 +19,8 @@ public class PlayerSplitController : MonoBehaviour
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+
         SplitHolder = new List<GameObject>();
         stateRef = FindObjectOfType<PlayerStateController>();
         CTS = FindObjectOfType<CameraTransitionScript>();

@@ -96,7 +96,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1303037186325660123}
-  m_Layer: 7
+  m_Layer: 4
   m_Name: MiddleRigOverrideTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7630410638368808036}
-  m_Layer: 7
+  m_Layer: 4
   m_Name: BottomRigOverrideTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5712008266068341361}
-  m_Layer: 7
+  m_Layer: 4
   m_Name: TopRigOverrideTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 7005335367960712743}
   - component: {fileID: 1001948376700236519}
   - component: {fileID: 4190378075891099072}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: PickUpCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 7875573078894397024}
   - component: {fileID: 7875573078894397027}
   - component: {fileID: 7875573078894397036}
-  m_Layer: 7
+  m_Layer: 4
   m_Name: LiquidForm
   m_TagString: Split
   m_Icon: {fileID: 0}
@@ -1106,6 +1106,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ripple
       objectReference: {fileID: 0}
+    - target: {fileID: 8969797826113730239, guid: 166655647c1d8034fb14a78269f5ecff, type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 166655647c1d8034fb14a78269f5ecff, type: 3}
 --- !u!4 &4979215942279996405 stripped
@@ -1123,6 +1127,10 @@ PrefabInstance:
     - target: {fileID: 2722097080670301471, guid: 5952cfefceb599c4681be139795a5a9c, type: 3}
       propertyPath: m_Name
       value: SmallDropsClone
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722097080670301471, guid: 5952cfefceb599c4681be139795a5a9c, type: 3}
+      propertyPath: m_Layer
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2724783655984624471, guid: 5952cfefceb599c4681be139795a5a9c, type: 3}
       propertyPath: m_RootOrder
