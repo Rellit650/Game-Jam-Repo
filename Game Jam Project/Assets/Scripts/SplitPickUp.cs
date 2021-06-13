@@ -5,6 +5,7 @@ using UnityEngine;
 public class SplitPickUp : MonoBehaviour
 {
     PlayerSplitController splitRef;
+    public int UISlotID;
     private void Start()
     {
         splitRef = FindObjectOfType<PlayerSplitController>();
