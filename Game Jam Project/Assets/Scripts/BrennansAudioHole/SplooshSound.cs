@@ -6,7 +6,8 @@ public class SplooshSound : MonoBehaviour
 {
     [SerializeField]
     private List<AudioClip> sounds;
-    
+
+    [SerializeField]
     private AudioSource movementSource;
 
     [SerializeField]
@@ -20,7 +21,6 @@ public class SplooshSound : MonoBehaviour
     void Start()
     {
         timeSinceLastPlay = 0.0f;
-        movementSource = GameObject.Find("Sploosh").GetComponent<AudioSource>();
         movementSource.volume = volume;
         movementSource.loop = false;
     }
