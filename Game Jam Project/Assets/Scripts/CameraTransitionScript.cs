@@ -20,16 +20,20 @@ public class CameraTransitionScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+
+    private void Update()
     {
-        duration += Time.deltaTime;
-        gameObject.transform.position = Vector3.Lerp(start.position, target.position, duration / transitionTime);
-        if (duration >= transitionTime) 
+        if (duration >= transitionTime)
         {
             cmCamera.LookAt = target;
             cmCamera.Follow = target;
             this.enabled = false;
         }
+    }
+    void FixedUpdate()
+    {
+        duration += Time.deltaTime;
+        gameObject.transform.position = Vector3.Lerp(start.position, target.position, duration / transitionTime);       
     }
     public void SetTarget(Transform newTarget) 
     {
