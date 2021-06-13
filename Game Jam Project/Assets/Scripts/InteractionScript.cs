@@ -33,8 +33,15 @@ public class InteractionScript : MonoBehaviour
                 other.GetComponent<PlayerMovement>().SwitchPlayerControl();
                 //Handle split removal from list 
                 splitRef.PickUpSplit(other.transform.parent.gameObject);
+
+                //Destroy split used for interaction
+                //splitRef.splitsLeft++;
+                Destroy(other.transform.parent.gameObject);
+
                 //Turn off this object once we have interacted with it
                 gameObject.SetActive(false);
+                //Turn off the parent object once we have interacted with it
+                gameObject.transform.parent.gameObject.SetActive(false);
             }
         }
     }
@@ -50,8 +57,15 @@ public class InteractionScript : MonoBehaviour
                 other.GetComponent<PlayerMovement>().SwitchPlayerControl();
                 //Handle split removal from list 
                 splitRef.PickUpSplit(other.transform.parent.gameObject);
+
+                //Destroy split used for interaction
+                //splitRef.splitsLeft++;
+                Destroy(other.transform.parent.gameObject);
+
                 //Turn off this object once we have interacted with it
                 gameObject.SetActive(false);
+                //Turn off the parent object once we have interacted with it
+                gameObject.transform.parent.gameObject.SetActive(false);
             }
         }
     }

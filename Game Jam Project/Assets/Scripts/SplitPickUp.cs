@@ -35,6 +35,7 @@ public class SplitPickUp : MonoBehaviour
     public void PickUp() 
     {
         splitRef.splitsLeft++;
+        splitRef.UpdateSplitCounter();
         splitRef.PickUpSplit(gameObject.transform.parent.parent.gameObject);
         Destroy(gameObject.transform.parent.parent.gameObject);
     }

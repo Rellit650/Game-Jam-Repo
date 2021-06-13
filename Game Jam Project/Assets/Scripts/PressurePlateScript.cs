@@ -18,11 +18,22 @@ public class PressurePlateScript : MonoBehaviour
     [SerializeField]
     private Transform target;
 
+    private Vector3 startPosition;
+    private Vector3 endTarget;
+
     bool moved = false;
+
+    private void Start()
+    {
+        if(purpose == activationType.Move)
+        {
+            startPosition = moveMe.transform.position;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) 
+        if (other.CompareTag("Player") || other.CompareTag("Split")) 
         {
             if (other.transform.parent.GetComponent<PlayerStateController>().state == 0) 
             {
@@ -34,23 +45,33 @@ public class PressurePlateScript : MonoBehaviour
                 }
                 if (purpose == activationType.Move) 
                 {
-                    if (!moved) 
-                    {
-                        StartCoroutine(moveIt());
-                        moved = true;
-                    }
+                    endTarget = target.position;
+                    StartCoroutine(moveIt());
                 }
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player") || other.CompareTag("Split"))
+        {
+            Debug.Log(purpose);
+    
+            if (purpose == activationType.Move)
+            {
+                endTarget = startPosition;
+                StartCoroutine(moveIt());
             }
         }
     }
 
     IEnumerator moveIt() 
     {
-        yield return new WaitForSeconds(0.01f);
-        moveMe.transform.position = Vector3.MoveTowards(moveMe.transform.position, target.position, 0.01f);
-        if ((moveMe.transform.position - target.position).sqrMagnitude > 0)
+        while ((moveMe.transform.position - endTarget).sqrMagnitude > 0)
         {
-            StartCoroutine(moveIt());
+            moveMe.transform.position = Vector3.MoveTowards(moveMe.transform.position, endTarget, 0.01f);
+            yield return null;
         }
     }
 }
