@@ -15,10 +15,12 @@ public class InteractionScript : MonoBehaviour
     public GameObject activateThis;
 
     PlayerSplitController splitRef;
+    CameraTransitionScript CTS;
 
     private void Start()
     {
         splitRef = FindObjectOfType<PlayerSplitController>();
+        CTS = FindObjectOfType<CameraTransitionScript>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,10 +31,12 @@ public class InteractionScript : MonoBehaviour
             {
                 //Activate the object linked to this interaction Spot
                 activateThis.SetActive(true);
-                //Cycle off of this split to next avaible one
-                other.GetComponent<PlayerMovement>().SwitchPlayerControl();
+
                 //Handle split removal from list 
                 splitRef.PickUpSplit(other.transform.parent.gameObject);
+
+                //Cycle off of this split to next avaible one
+                other.GetComponent<PlayerMovement>().SwitchPlayerControl();
 
                 //Destroy split used for interaction
                 //splitRef.splitsLeft++;
@@ -53,10 +57,10 @@ public class InteractionScript : MonoBehaviour
             {
                 //Activate the object linked to this interaction Spot
                 activateThis.SetActive(true);
-                //Cycle off of this split to next avaible one
-                other.GetComponent<PlayerMovement>().SwitchPlayerControl();
                 //Handle split removal from list 
                 splitRef.PickUpSplit(other.transform.parent.gameObject);
+                //Cycle off of this split to next avaible one
+                other.GetComponent<PlayerMovement>().SwitchPlayerControl();      
 
                 //Destroy split used for interaction
                 //splitRef.splitsLeft++;
