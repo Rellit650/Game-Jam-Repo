@@ -5,7 +5,6 @@ using UnityEngine;
 public class SplitPickUp : MonoBehaviour
 {
     PlayerSplitController splitRef;
-    public int UISlotID;
     private void Start()
     {
         splitRef = FindObjectOfType<PlayerSplitController>();
@@ -36,6 +35,7 @@ public class SplitPickUp : MonoBehaviour
     public void PickUp() 
     {
         splitRef.splitsLeft++;
+        splitRef.UpdateSplitCounter();
         splitRef.PickUpSplit(gameObject.transform.parent.parent.gameObject);
         Destroy(gameObject.transform.parent.parent.gameObject);
     }
