@@ -132,4 +132,8 @@ public class UIScript : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void ReturnToMainMenu() 
+    {
+        SceneManager.LoadScene("StartScreen");
+    }
 }
