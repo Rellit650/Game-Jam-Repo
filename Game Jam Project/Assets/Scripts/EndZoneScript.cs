@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndZoneScript : MonoBehaviour
 {
+    [SerializeField]
+    private string sceneName;
     [SerializeField]
     private int splitsRequired;
     private void OnTriggerEnter(Collider other)
@@ -12,7 +15,7 @@ public class EndZoneScript : MonoBehaviour
         {
             if (other.transform.parent.GetComponent<PlayerSplitController>().splitsLeft >= splitsRequired) 
             {
-                Debug.Log("You did It! Wow!");
+                SceneManager.LoadScene(sceneName);
             }           
         }
     }

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5896756966695662589}
   - component: {fileID: 6827672711836997745}
   - component: {fileID: 6767394021865432794}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pressure Plate Move
   m_TagString: Untagged
   m_Icon: {fileID: 0}
