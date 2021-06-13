@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIScript : MonoBehaviour
 {
@@ -118,10 +119,17 @@ public class UIScript : MonoBehaviour
     public void PullUpPauseMenu() 
     {
         pauseMenu.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
     }
     public void ClosePauseMenu()
     {
         pauseMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void RestartLevel() 
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }
