@@ -250,4 +250,9 @@ public class PlayerMovement : MonoBehaviour
                     };
         splitControllerRef.CycleControl(oldSource, handler, 0.5f);
     }
+
+    public bool IsPlayerMoving()
+    {
+        return !stopMoving;
+    }
 }
