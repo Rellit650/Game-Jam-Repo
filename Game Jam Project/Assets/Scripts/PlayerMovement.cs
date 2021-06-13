@@ -84,6 +84,8 @@ public class PlayerMovement : MonoBehaviour
         waterSource = GameObject.Find("WaterSource").GetComponent<AudioSource>();
         gasSource = GameObject.Find("GasSource").GetComponent<AudioSource>();
         handler = GameObject.Find("SwapHandler").GetComponent<AudioScript>();
+
+        StopParticleSystems();
     }
 
     // Update is called once per frame
