@@ -8,10 +8,13 @@ public class PlayerStateController : MonoBehaviour
     public int state = 0;
     public GameObject[] stateGameObjectArray;
     CinemachineFreeLook cmCamera;
+    public int UISlotID;
+    UIScript UIRef;
 
     private void Start()
     {
         cmCamera = FindObjectOfType<CinemachineFreeLook>();
+        UIRef = FindObjectOfType<UIScript>();
     }
     public void ChangeToNextState() 
     {
@@ -26,6 +29,7 @@ public class PlayerStateController : MonoBehaviour
             cmCamera.GetRig(0).LookAt = stateGameObjectArray[1].transform.Find("TopRigOverrideTarget");
             cmCamera.GetRig(1).LookAt = stateGameObjectArray[1].transform.Find("MiddleRigOverrideTarget");
             cmCamera.GetRig(2).LookAt = stateGameObjectArray[1].transform.Find("BottomRigOverrideTarget");
+            
         }
         else if (state == 1) 
         {
@@ -51,6 +55,7 @@ public class PlayerStateController : MonoBehaviour
             cmCamera.GetRig(1).LookAt = stateGameObjectArray[0].transform.Find("MiddleRigOverrideTarget");
             cmCamera.GetRig(2).LookAt = stateGameObjectArray[0].transform.Find("BottomRigOverrideTarget");
         }
+        //if(gameObject.transform.GetComponentInChildren<>)
         ++state;
         if (state >= 3) 
         {
