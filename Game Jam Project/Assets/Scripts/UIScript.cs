@@ -12,6 +12,7 @@ public class UIScript : MonoBehaviour
 
     public Image PlayerImage;
     public TextMeshProUGUI SplitCounterText;
+    public GameObject pauseMenu;
 
     [SerializeField]
     Sprite solidSprite;
@@ -110,6 +111,17 @@ public class UIScript : MonoBehaviour
     public void RemoveUISplit(int index) 
     {
         splitImages[index].sprite = Cube;
+    }
+
+
+    //Pause menu functions
+    public void PullUpPauseMenu() 
+    {
+        pauseMenu.SetActive(true);
+    }
+    public void ClosePauseMenu()
+    {
+        pauseMenu.SetActive(false);
     }
 
 }

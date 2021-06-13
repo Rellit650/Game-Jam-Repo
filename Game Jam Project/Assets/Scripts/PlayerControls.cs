@@ -57,6 +57,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""123da0e0-2e8a-4e98-9f28-e180c950d2e7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -202,6 +210,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""SwitchPlayer"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7e297a29-7f12-41eb-ab05-9f4a8e5bd492"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -276,6 +295,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_PlayerActions_Split = m_PlayerActions.FindAction("Split", throwIfNotFound: true);
         m_PlayerActions_PickUp = m_PlayerActions.FindAction("PickUp", throwIfNotFound: true);
         m_PlayerActions_SwitchPlayer = m_PlayerActions.FindAction("SwitchPlayer", throwIfNotFound: true);
+        m_PlayerActions_Pause = m_PlayerActions.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -330,6 +350,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerActions_Split;
     private readonly InputAction m_PlayerActions_PickUp;
     private readonly InputAction m_PlayerActions_SwitchPlayer;
+    private readonly InputAction m_PlayerActions_Pause;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -339,6 +360,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Split => m_Wrapper.m_PlayerActions_Split;
         public InputAction @PickUp => m_Wrapper.m_PlayerActions_PickUp;
         public InputAction @SwitchPlayer => m_Wrapper.m_PlayerActions_SwitchPlayer;
+        public InputAction @Pause => m_Wrapper.m_PlayerActions_Pause;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -363,6 +385,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @SwitchPlayer.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSwitchPlayer;
                 @SwitchPlayer.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSwitchPlayer;
                 @SwitchPlayer.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSwitchPlayer;
+                @Pause.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -382,6 +407,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @SwitchPlayer.started += instance.OnSwitchPlayer;
                 @SwitchPlayer.performed += instance.OnSwitchPlayer;
                 @SwitchPlayer.canceled += instance.OnSwitchPlayer;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -438,5 +466,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnSplit(InputAction.CallbackContext context);
         void OnPickUp(InputAction.CallbackContext context);
         void OnSwitchPlayer(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
