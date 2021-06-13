@@ -565,6 +565,7 @@ GameObject:
   - component: {fileID: 7875573078894397024}
   - component: {fileID: 7875573078894397027}
   - component: {fileID: 7875573078894397036}
+  - component: {fileID: 3954627820200256660}
   m_Layer: 4
   m_Name: LiquidForm
   m_TagString: Split
@@ -690,6 +691,25 @@ MonoBehaviour:
   clip: {fileID: 8300000, guid: 29f26e3ad9671254884825a977d098d3, type: 3}
   SolidMovement: {fileID: 2702058436449148969}
   WaterMovement: {fileID: 5903125706116106609}
+--- !u!114 &3954627820200256660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7875573078894397029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79fc4ab7443b9f647a9d023b8708e601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: 72dba585e51494448a2574d2ae63ab69, type: 3}
+  - {fileID: 8300000, guid: a64f54ae4a2d87444822da5aa483cffa, type: 3}
+  - {fileID: 8300000, guid: c372bb49e1734ad45987295def7fa89d, type: 3}
+  movementSource: {fileID: 0}
+  volume: 0.75
+  timeBetweenPlays: 0.2
 --- !u!1 &7875573078962955980
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,14 +1198,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5952cfefceb599c4681be139795a5a9c, type: 3}
---- !u!198 &5903125706116106609 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 2810802795676211163, guid: 5952cfefceb599c4681be139795a5a9c, type: 3}
-  m_PrefabInstance: {fileID: 8569760536302165674}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5998099270349319677 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2724783655984624471, guid: 5952cfefceb599c4681be139795a5a9c, type: 3}
+  m_PrefabInstance: {fileID: 8569760536302165674}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5903125706116106609 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2810802795676211163, guid: 5952cfefceb599c4681be139795a5a9c, type: 3}
   m_PrefabInstance: {fileID: 8569760536302165674}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8632560327670350485
