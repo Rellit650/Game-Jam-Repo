@@ -16,6 +16,7 @@ public class PlayerSplitController : MonoBehaviour
     PlayerStateController stateRef;
     CameraTransitionScript CTS;
     CinemachineFreeLook cmCamera;
+    UIScript UIRef;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class PlayerSplitController : MonoBehaviour
         CTS = FindObjectOfType<CameraTransitionScript>();
         SplitHolder.Add(gameObject);
         cmCamera = FindObjectOfType<CinemachineFreeLook>();
+        UIRef = FindObjectOfType<UIScript>();
     }
     public void SplitPlayer(GameObject player) 
     {
@@ -37,21 +39,36 @@ public class PlayerSplitController : MonoBehaviour
                 GameObject temp = Instantiate(splitPrefab, playerTransform.position + new Vector3(0f, 1f, 0f), playerTransform.rotation);
                 temp.GetComponent<PlayerStateController>().SetState(0);
                 SplitHolder.Add(temp);
+                temp.GetComponentInChildren<SplitPickUp>().UISlotID = UIRef.SetSplitUI(0);
             }
             if (stateRef.state == 1)
             {
                 GameObject temp = Instantiate(splitPrefab, playerTransform.position + new Vector3(0f, 1f, 0f), playerTransform.rotation);
                 temp.GetComponent<PlayerStateController>().SetState(1);
                 SplitHolder.Add(temp);
+                temp.GetComponentInChildren<SplitPickUp>().UISlotID = UIRef.SetSplitUI(1);
             }
             if (stateRef.state == 2)
             {
                 GameObject temp = Instantiate(splitPrefab, playerTransform.position + new Vector3(0f, 1f, 0f), playerTransform.rotation);
                 temp.GetComponent<PlayerStateController>().SetState(2);
                 SplitHolder.Add(temp);
+                temp.GetComponentInChildren<SplitPickUp>().UISlotID = UIRef.SetSplitUI(2);
             }
             --splitsLeft;
         }        
+    }
+
+    int FindListIndex(GameObject go) 
+    {
+        for (int i = 0; i < SplitHolder.Count; i++) 
+        {
+            if (go == SplitHolder[i]) 
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public void CycleControl(AudioSource old, AudioScript handler, float newVolume) 
@@ -122,7 +139,9 @@ public class PlayerSplitController : MonoBehaviour
 
     public void PickUpSplit(GameObject split) 
     {
+        UIRef.RemoveUISplit(split.GetComponentInChildren<SplitPickUp>().UISlotID);
         SplitHolder.Remove(split);
+        
         if (currentSplitIndex >= SplitHolder.Count - 1) 
         {
             currentSplitIndex = 0;
