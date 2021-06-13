@@ -46,7 +46,7 @@ public class PressurePlateScript : MonoBehaviour
                 if (purpose == activationType.Move) 
                 {
                     endTarget = target.position;
-                    GameObject.Find("Door").GetComponent<AudioSource>().Play();
+                    moveMe.GetComponent<AudioSource>().Play();
                     StartCoroutine(moveIt());
                 }
             }
@@ -62,7 +62,7 @@ public class PressurePlateScript : MonoBehaviour
             if (purpose == activationType.Move)
             {
                 endTarget = startPosition;
-                GameObject.Find("Door").GetComponent<AudioSource>().Play();
+                moveMe.GetComponent<AudioSource>().Play();
                 StartCoroutine(moveIt());
             }
         }
@@ -75,6 +75,6 @@ public class PressurePlateScript : MonoBehaviour
             moveMe.transform.position = Vector3.MoveTowards(moveMe.transform.position, endTarget, 0.01f);
             yield return null;
         }
-        GameObject.Find("Door").GetComponent<AudioSource>().Stop();
+        moveMe.GetComponent<AudioSource>().Stop();
     }
 }

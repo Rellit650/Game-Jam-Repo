@@ -19,7 +19,7 @@ public class SplooshSound : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timeSinceLastPlay = 0.0f;
+        timeSinceLastPlay = timeBetweenPlays + 0.1f;
         movementSource = GameObject.Find("Sploosh").GetComponent<AudioSource>();
         movementSource.volume = volume;
         movementSource.loop = false;
