@@ -51,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
     ParticleSystem SolidMovement;
     [SerializeField]
     ParticleSystem WaterMovement;
+
+    UIScript UIRef;
     private void OnEnable()
     {
         system.Enable();
@@ -72,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
         system.PlayerActions.Split.performed += ctx => SplitPlayer();
         system.PlayerActions.PickUp.performed += ctx => PickUp();
         system.PlayerActions.SwitchPlayer.performed += ctx => SwitchPlayerControl();
+        system.PlayerActions.Pause.performed += ctx => OpenPauseMenu();
     }
 
     // Start is called before the first frame update
@@ -86,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
         handler = GameObject.Find("SwapHandler").GetComponent<AudioScript>();
         stopMoving = true;
 
+        UIRef = FindObjectOfType<UIScript>();
         StopParticleSystems();
     }
 
@@ -158,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
             appliedVelocity = Vector3.zero;
             return;
         }
-
+        
         stopMoving = false;
         
         if (firstFrameOfMovement)
@@ -187,6 +191,10 @@ public class PlayerMovement : MonoBehaviour
         slideTimer = 0f;
         initialLerpVelocity = appliedVelocity;
         appliedVelocity.Normalize();
+    }
+    void OpenPauseMenu() 
+    {
+        UIRef.PullUpPauseMenu();
     }
 
     void StopParticleSystems() 
