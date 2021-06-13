@@ -55,11 +55,18 @@ public class PlayerStateController : MonoBehaviour
             cmCamera.GetRig(1).LookAt = stateGameObjectArray[0].transform.Find("MiddleRigOverrideTarget");
             cmCamera.GetRig(2).LookAt = stateGameObjectArray[0].transform.Find("BottomRigOverrideTarget");
         }
-        //if(gameObject.transform.GetComponentInChildren<>)
         ++state;
         if (state >= 3) 
         {
             state = 0;
+        }
+        if (gameObject.CompareTag("Split"))
+        {
+            UIRef.UpdateSplitIcon(UISlotID, state);
+        }
+        if (gameObject.CompareTag("Player")) 
+        {
+            UIRef.SetPlayerImage(state);
         }
     }
 

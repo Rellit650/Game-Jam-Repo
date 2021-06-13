@@ -57,6 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b611d5bbacfa58b498b04f8f6e87ef46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UISlotID: 0
 --- !u!1 &1354948438264081727
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,6 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b611d5bbacfa58b498b04f8f6e87ef46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UISlotID: 0
 --- !u!1 &5624281043225032700
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +338,7 @@ GameObject:
   - component: {fileID: 7005335367960712743}
   - component: {fileID: 1001948376700236519}
   - component: {fileID: 4190378075891099072}
-  m_Layer: 4
+  m_Layer: 0
   m_Name: PickUpCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,6 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b611d5bbacfa58b498b04f8f6e87ef46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UISlotID: 0
 --- !u!1 &7778171283212991110
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,7 +710,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 72dba585e51494448a2574d2ae63ab69, type: 3}
   - {fileID: 8300000, guid: a64f54ae4a2d87444822da5aa483cffa, type: 3}
   - {fileID: 8300000, guid: c372bb49e1734ad45987295def7fa89d, type: 3}
-  movementSource: {fileID: 0}
   volume: 0.75
   timeBetweenPlays: 0.2
 --- !u!1 &7875573078962955980
@@ -873,7 +875,7 @@ GameObject:
   - component: {fileID: 7875573079068448591}
   m_Layer: 0
   m_Name: SplitPrefab
-  m_TagString: Untagged
+  m_TagString: Split
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -912,6 +914,7 @@ MonoBehaviour:
   - {fileID: 7875573078793407914}
   - {fileID: 7875573078894397029}
   - {fileID: 7875573078962955980}
+  UISlotID: 0
 --- !u!1 &8049187887472897788
 GameObject:
   m_ObjectHideFlags: 0

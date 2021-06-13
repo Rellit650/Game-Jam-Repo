@@ -29,6 +29,11 @@ public class PlayerSplitController : MonoBehaviour
         cmCamera = FindObjectOfType<CinemachineFreeLook>();
         UIRef = FindObjectOfType<UIScript>();
     }
+
+    public void UpdateSplitCounter() 
+    {
+        UIRef.SetSplitCounter(splitsLeft);
+    }
     public void SplitPlayer(GameObject player) 
     {
         if (splitsLeft > 0) 
@@ -39,23 +44,24 @@ public class PlayerSplitController : MonoBehaviour
                 GameObject temp = Instantiate(splitPrefab, playerTransform.position + new Vector3(0f, 1f, 0f), playerTransform.rotation);
                 temp.GetComponent<PlayerStateController>().SetState(0);
                 SplitHolder.Add(temp);
-                temp.GetComponentInChildren<SplitPickUp>().UISlotID = UIRef.SetSplitUI(0);
+                temp.GetComponent<PlayerStateController>().UISlotID = UIRef.SetSplitUI(0);
             }
             if (stateRef.state == 1)
             {
                 GameObject temp = Instantiate(splitPrefab, playerTransform.position + new Vector3(0f, 1f, 0f), playerTransform.rotation);
                 temp.GetComponent<PlayerStateController>().SetState(1);
                 SplitHolder.Add(temp);
-                temp.GetComponentInChildren<SplitPickUp>().UISlotID = UIRef.SetSplitUI(1);
+                temp.GetComponent<PlayerStateController>().UISlotID = UIRef.SetSplitUI(1);
             }
             if (stateRef.state == 2)
             {
                 GameObject temp = Instantiate(splitPrefab, playerTransform.position + new Vector3(0f, 1f, 0f), playerTransform.rotation);
                 temp.GetComponent<PlayerStateController>().SetState(2);
                 SplitHolder.Add(temp);
-                temp.GetComponentInChildren<SplitPickUp>().UISlotID = UIRef.SetSplitUI(2);
+                temp.GetComponent<PlayerStateController>().UISlotID = UIRef.SetSplitUI(2);
             }
             --splitsLeft;
+            UIRef.SetSplitCounter(splitsLeft);
         }        
     }
 
@@ -106,6 +112,15 @@ public class PlayerSplitController : MonoBehaviour
                 objectToView = child;
             }
         }
+        if (SplitHolder[currentSplitIndex].CompareTag("Split"))
+        {
+            UIRef.ActivateOutline(SplitHolder[currentSplitIndex].GetComponent<PlayerStateController>().UISlotID);
+        }
+        else 
+        {
+            UIRef.ActivateOutline(3);
+        }
+        
         CTS.enabled = true;
         CTS.SetTarget(objectToView);
         cmCamera.Follow = CTS.transform;
@@ -139,7 +154,7 @@ public class PlayerSplitController : MonoBehaviour
 
     public void PickUpSplit(GameObject split) 
     {
-        UIRef.RemoveUISplit(split.GetComponentInChildren<SplitPickUp>().UISlotID);
+        UIRef.RemoveUISplit(split.GetComponent<PlayerStateController>().UISlotID);
         SplitHolder.Remove(split);
         
         if (currentSplitIndex >= SplitHolder.Count - 1) 
